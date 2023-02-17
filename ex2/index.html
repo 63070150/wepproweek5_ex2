@@ -95,7 +95,7 @@
                 </div>
 
                 <!-- Card element start here------------------------------------------>
-                <div class="card mb-4" v-for="product in cart">
+                <div class="card mb-4" v-for="(product, index) in cart"  @click="cart.splice(index, 1)">
                     <div class="card-content p-0">
                         <div class="media">
                             <div class="media-left">
