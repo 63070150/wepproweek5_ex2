@@ -90,8 +90,8 @@
             <!-- Column แสดงตะกร้า--------------------------------------------------->
             <div class="column is-3 pt-6 pl-0 pr-5">
                 <div style="display: flex;justify-content: space-between;">
-                    <span class="is-size-4 mb-4">Cart ()</span>
-                    <a class="is-danger mb-4 button">Clear</a>
+                    <span class="is-size-4 mb-4">Cart ({{cart.length}})</span>
+                    <a class="is-danger mb-4 button" @click="cart=[]">Clear</a>
                 </div>
 
                 <!-- Card element start here------------------------------------------>
