@@ -38,11 +38,9 @@
 
                         <!-- Card element start here------------------------------------------>
                         <div id="card_product" class="column is-one-quarter" v-for="product in products">
-                            <div class="card">
+                            <div class="card" :class="{'has-background-warning-light': product.is_favorite}">
                                 <div class="card-image">
                                     <figure class="image is-1by1">
-                                                                                <!-- help -->
-
                                         <img :src="product.image" alt="Placeholder image">
                                     </figure>
                                 </div>
@@ -58,22 +56,23 @@
                                     <div style="display: flex;justify-content: space-between;">
 
                                         <!-- คลิกที่ดาว หาก is_favorite = true ให้แสดงดาว v1 ถ้า is_favorite = false ---------->
-                                        <div class="icon is-size-4">
+                                        <div class="icon is-size-4" @click="product.is_favorite = !product.is_favorite">
 
+                                            <!-- star ใส -->
+                                            <span key="false" v-if="!product.is_favorite">
+                                                <i class="far fa-star has-text-warning"></i>
+                                            </span>
+                                            
                                             <!-- star ทึบ -->
-                                            <span class="icon" key="true">
+                                            <span class="icon" key="true" v-else-if="product.is_favorite">
                                                 <i class="fas fa-star has-text-warning"></i>
                                             </span>
 
-                                            <!-- star ใส -->
-                                            <span key="false">
-                                                <i class="far fa-star has-text-warning"></i>
-                                            </span>
 
                                         </div>
 
                                         <!-- ไอคอนรูปตะกร้า -->
-                                        <div class="icon is-size-4">
+                                        <div class="icon is-size-4" @click="cart.push(product)">
                                             <i class="fas fa-shopping-cart has-text-warning"></i>
                                         </div>
 
@@ -96,19 +95,19 @@
                 </div>
 
                 <!-- Card element start here------------------------------------------>
-                <div class="card mb-4">
+                <div class="card mb-4" v-for="product in cart">
                     <div class="card-content p-0">
                         <div class="media">
                             <div class="media-left">
                                 <figure class="image is-96x96">
-                                    <img src="https://images.unsplash.com/photo-1591337676887-a217a6970a8a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                                    <img :src="product.image"
                                         alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="media-content pt-2">
-                                <p class="is-5">iPhone 11</p>
-                                <p class="has-text-grey-light is-6">Apple</p>
-                                <p class="is-6 has-text-danger">34900</p>
+                                <p class="is-5">{{product.title}}</p>
+                                <p class="has-text-grey-light is-6">{{product.brand}}</p>
+                                <p class="is-6 has-text-danger">{{product.price}}</p>
                             </div>
                         </div>
                     </div>
